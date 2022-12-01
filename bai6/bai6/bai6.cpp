@@ -39,6 +39,10 @@ void Input(int &CTrau,int &CCo) {
 }
 
 void Output(ConTrau *Nghiem) {
+	if (n == 0) {
+		cout << "Khong Ton Tai Nghiem";
+		return;
+	}
 	cout << "Nghiem Cua Phuong Trinh (Lan luot la trau dung, trau nam, trau gia) : \n";
 	for (int i = 1; i <= n; i++) {
 		cout << Nghiem[i].TrauDung << " " << Nghiem[i].TrauNam << " " << Nghiem[i].TrauGia << '\n';
