@@ -1,20 +1,55 @@
-// bai4.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <iostream>
-
-int main()
-{
-    std::cout << "Hello World!\n";
+// Bai 4
+#include<iostream>
+using namespace std;
+// cau a
+struct ThongTinTrongNam {
+	int ngay;
+	int thang;
+	char dau;
+    void NhapNgay_Thang()
+    {
+        cin >> ngay >> dau >> thang;
+    }
+};
+void SapXepThoiGianA(ThongTinTrongNam ngay_thang[], int n) {
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i+1; j < n; j++)
+        {
+            if (ngay_thang[j].thang < ngay_thang[i].thang) {
+                swap(ngay_thang[i], ngay_thang[j]);
+            }
+            if (ngay_thang[j].thang == ngay_thang[i].thang) {
+                if (ngay_thang[j].ngay < ngay_thang[i].ngay) {
+                    swap(ngay_thang[i], ngay_thang[j]);
+                }
+            }
+        }
+    }
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+ThongTinTrongNam ngay_thang[(int)2e7];
+// cau b
+#include<iostream>
+using namespace std;
+struct ThongTinTrongNgay {
+    int gio;
+    int phut;
+    int giay;
+    char dau;
+    void NhapGio_Phut_Giay() {
+        cin >> gio >> dau >> phut >> dau >> giay;
+    }
+    int doigiay() {
+        return (gio*3600)+(60*phut)+giay;
+    }
+};
+void SapXepThoiGianB(ThongTinTrongNgay gio_giac[] , int n) {
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if( gio_giac[j].doigiay() < gio_giac[i].doigiay()) swap(gio_giac[j],gio_giac[i]);
+        }
+    }
+}
+ThongTinTrongNgay gio_giac[(int)2e7];
