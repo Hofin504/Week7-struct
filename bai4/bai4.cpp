@@ -63,19 +63,6 @@ struct Thoi_Gian {
 	char dau;
 };
 Thoi_Gian a[(int)2e7];
-void NhapThoiGian(Thoi_Gian a[], int n) {
-	for (int i = 0; i < n; i++)
-	{
-		cout << "Nhap Thoi Gian [" << i << "]: ";
-		cin >> a[i].ngay >> a[i].dau >> a[i].thang >> a[i].dau >> a[i].nam >> a[i].dau >> a[i].gio >> a[i].dau >> a[i].phut;
-	}
-}
-void XuatThoiGian(Thoi_Gian a[], int n) {
-	for (int i = 0; i < n; i++)
-	{
-		cout << a[i].ngay << "/" << a[i].thang << "/" << a[i].nam << " " << a[i].gio<< ":" << a[i].phut << "\n";
-	}
-}
 bool KT_NamNhuan(Thoi_Gian a[], int n) {
 	for (int i = 0; i < n; i++)
 	{
@@ -154,44 +141,24 @@ double DoiGioPhut_SangNgay(Thoi_Gian a[], int n) {
 		return ((a[i].gio / 24.0) + (a[i].phut / 1440.0));
 	}
 }
-int HamTinhNgay(Thoi_Gian a[],int n) {
-	return (DoiGioPhut_SangNgay(a, n) + DoiNam_SangNgay(a, n) + DoiThang_SangNgay(a, n));
-}
 void SapXepThoiGian(Thoi_Gian a[], int n) {
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = i+1; j < n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
-			if ((a[j].ngay+HamTinhNgay(a,n)) < (HamTinhNgay(a,n)+a[i].ngay)) {
+			if ((a[j].ngay + HamTinhNgay(a,n)) < (HamTinhNgay(a,n) + a[i].ngay)) {
 				swap(a[j],a[i]);
 			}
+			if ((a[j].ngay + HamTinhNgay(a, n)) == (HamTinhNgay(a, n) + a[i].ngay)) {
+				if (a[j].gio < a[i].gio) {
+					swap(a[j], a[i]);
+				}
+				if (a[j].gio == a[i].gio) {
+					if (a[j].phut < a[i].phut) {
+						swap(a[j], a[i]);
+					}
+				}
+			}
 		}
-	}
-}
-void NhapMang(Thoi_Gian a[], int& n) // ham nhap mang n phan tu
-{
-	char choice;
-	cout << "1. Biet so luong phan tu\n"
-		<< "2. Khong biet so luong phan tu\n";
-	cin >> choice;
-	if (choice == '2')
-	{
-		char ans;
-		n = 0;
-		do
-		{
-			cout << "Nhap Thoi Gian [" << n << "]: ";
-			NhapThoiGian(a,n);
-			n++;
-			cout << "Con khong? (y/n): ";
-			cin >> ans;
-		} while (ans == 'y' || ans == 'Y');
-	}
-	else if (choice == '1')
-	{
-		cout << "Nhap so luong phan tu: ";
-		cin >> n;
-		NhapThoiGian(a, n);
-		
 	}
 }
