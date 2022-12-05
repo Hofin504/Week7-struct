@@ -32,13 +32,22 @@ void nhan_x0(int &x0)
     cout << "Nhap x0: ";
     cin >> x0;
 }
+
+int power(int x, int y) {
+    if (y == 0) return 1;
+    if (y == 1) return x;
+    int w = power(x, y / 2);
+    if (y & 1) return w * w * x;
+    return w * w;
+}
+
 void nhan_giatri(DaThuc a[], int n, int x0)
 {
     for (int i = 1; i <= n; i++)
     {
         for (int j = a[i].bac; j >= 0; j--)
         {
-            a[i].giatri += a[i].heSo[j] * pow(x0, j);
+            a[i].giatri += a[i].heSo[j] * power(x0, j);
         }
     }
 }
