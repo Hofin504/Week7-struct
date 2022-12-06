@@ -76,7 +76,6 @@ Fraction f[(int)1e7];
 			sum(f,count / 2, count / 2 + 1, numerator, denominator);
 			denominator *= 2;
 			int gcd = GCD(numerator, denominator);
-			//Lam dep phan so trung binh cong
 			numerator /= gcd;
 			denominator /= gcd;
 			printfraction(numerator, denominator);
